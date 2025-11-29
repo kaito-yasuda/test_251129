@@ -15,8 +15,8 @@ export const Home = () => {
   return (
     <div style={homeStyle}>
       <main style={mainStyle}>
-        <RegisterForm />
-        <TaskList taskList={taskList} />
+        <RegisterForm setTaskList={setTaskList}/>
+        <TaskList taskList={taskList} setTaskList={setTaskList} />
       </main>
     </div>
   );
