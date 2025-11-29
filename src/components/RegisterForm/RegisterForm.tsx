@@ -1,6 +1,6 @@
-import { useState } from 'react';
+  import { useState } from 'react';
 import { actions, formCard, input, primaryBtn, textarea } from './RegisterForm.styles';
-import { TaskType } from '../../types.ts';
+import { type TaskType } from '../../types.ts';
 type Props = {setTaskList:React.Dispatch<React.SetStateAction<TaskType[]>>}
 //↑これ合っている？
 
@@ -15,7 +15,6 @@ export const RegisterForm = ({setTaskList}:Props) => {
     e.preventDefault();
     //「タイトル」・「TODO」を入力後、追加ボタン押下でタスクカードを追加 taskList,setTaskListを書き換える
     //「タイトル」・「TODO」のいずれかが空欄の場合には登録できないようにする
-    // task
     // idは重複が許されない→数値化された新しい時間の値をidに入れるdate.now()を使用
 
     const newTask = {
@@ -23,8 +22,10 @@ export const RegisterForm = ({setTaskList}:Props) => {
     title: title,
     detail: detail,
     }
+    //macのコンソールログ：Cmd+Opt+J
     console.log("newtask")
-    setTaskList([])
+    //今までのデータ＋今書いたデータが追加できる
+    setTaskList((prev)=>[...prev,newTask]);
   };
 
   return (
