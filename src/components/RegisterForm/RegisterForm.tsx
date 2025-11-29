@@ -22,10 +22,12 @@ export const RegisterForm = ({setTaskList}:Props) => {
     title: title,
     detail: detail,
     }
-    //macのコンソールログ：Cmd+Opt+J
+    //macのコンソールログ：Command+Opt+J
     console.log("newtask")
     //今までのデータ＋今書いたデータが追加できる
     setTaskList((prev)=>[...prev,newTask]);
+    setTitle("");
+    setDetail("");
   };
 
   return (
