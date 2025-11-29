@@ -33,11 +33,21 @@ export const TaskCard = ({ task, taskList, setTaskList
     setIsEditing(false);
   };
 
-  /**
-   * TODO：削除の作成
-   */
+  
+
   const onClickDeleteButton = () => {
-    // ここに削除ボタン押下時の処理
+  // ここに削除ボタン押下時の処理
+  //set__を利用します　タスクリストから一致したIDを探してリストから除外→settasklist更新
+  //さっきのの新しい値に更新、を消す、に変えたいが　そういうことではない？　これだと編集画面に行ってしまう
+  //filterまでは着いたが値の指定ができてない　なぜ
+    const deletedTaskList = taskList.filter((t) => {
+        return  t.id !== task.id;
+    })
+    //return t;
+    
+    setTaskList([...deletedTaskList]);
+    //setIsEditing((prev) => !prev)
+
   };
 
   // TODO：編集の作成
@@ -62,7 +72,7 @@ export const TaskCard = ({ task, taskList, setTaskList
     setTaskList([...updatedTaskList]);
     //...:分割代入　参照による値の崩れ対策として新しい数列を作るための動作
     setIsEditing((prev) => !prev)
-    };
+  };
 
   //カード全体のあれをpropsで撮ってくる必要がある
   //!!taskcard（ここの上の方）に書くsetTaskCardのなにか消してしまった気がする
@@ -71,10 +81,13 @@ export const TaskCard = ({ task, taskList, setTaskList
   //リストからidを使用して探索する作業をやります
   //setTaskList((taskList)=>[updatedTaskList]);?
 
+  //回答メモ
+  //編集機能にやっていた色々→スプレッド構文(新数列で書き換え)→更新　の順序
+
   return (
     <>
       {isEditing ? (
-        //trueだと↓ここが　更新時に発火されるなにかがどうって言っていた
+        //trueだと↓ここが　更新時に発火されるなにかがどうって言っていた←editedTitleをって話だったのだろうか
         <form style={S.card} onSubmit={onSubmitEditForm}>
           <input style={S.editInput} value={editedTitle} onChange={(e) => setEditedTitle(e.target.value)} />
           <br />
